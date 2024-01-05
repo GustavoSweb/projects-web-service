@@ -1,16 +1,11 @@
 const {NotExistValue, NotValid, ConflictData} = require('../utils/Error')
-const project = require("../models/Projects")
+const ProjectModel = require("../models/Projects")
+var Get = require('./common/Get') 
 
 class Projects {
-    async GetProjects(req, res){
-        try{
-            const data = await project.search.findAll()
-            res.status(200).json(data)
-        }catch(err){
-            console.log(err)
-            if(err.status) res.status(err.status).json({err:err.message})
-            res.sendStatus(500)
-        }
+    constructor() {
+        this.get = new Get(ProjectModel); // passando o model do controller
+        this.getProjects = this.get.All.bind(this.get);  // Faz com quer o metodo all estege instanciado no get
     }
 }
 

@@ -1,7 +1,8 @@
 const database = require("../database/connection");
-class Projects {
-    constructor(table){
-        Object.assign(this, new Find(table)); // ira juntar os metodos do find diretamente em projects
-    }
+const Find = require("./common/Find");
+class Skills {
+  constructor(table) {
+    this.search = new Find(table);
+  }
 }
-module.exports = new Skills('skills');
+module.exports = new Skills("skills");

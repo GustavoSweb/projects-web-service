@@ -1,7 +1,7 @@
 const express = require('express')
 const Router = express.Router()
-const SkillController = require('../controllers/Projects')
+const Skills = require('../controllers/Skills')
 
-Router.get('/skills', )
+Router.get('/skills', Skills.getSkills)
 
 module.exports = Router
