@@ -13,29 +13,18 @@ class Find {
       throw err;
     }
   }
-  async findOne(data) {
-    try {
-      if (!this.table) throw new Error("Não foi especificado a tabela");
-
-      const ONE_KEY_WHERE = Object.keys(data)[0];
-      const VALUE_ONE_KEY = data[ONE_KEY_WHERE];
+  async InnerJoinProjectsSkills(id_find_by_id){
+    try{
       const data = await database
-        .select()
-        .where(ONE_KEY_WHERE, VALUE_ONE_KEY)
-        .table(this.table);
-      return data[0];
-    } catch (err) {
-      throw err;
-    }
-  }
-  async findById(id) {
-    try {
-      if (!id) throw new Error("Não foi especificado o id");
-      if (!this.table) throw new Error("Não foi especificado a tabela");
-      const data = await database.select().where({ id }).table(this.table);
-      return data[0];
-    } catch (err) {
-      throw err;
+        .select([
+          "projects.*", "skills.name as skill_name", "skills.id as skill_id", "skills.level as skill_level", "skills.urlBackground as skill_urlBackground"
+      ]).table("users_materias")
+        .innerJoin("skills", "skills.id", "projects_skills.skill_id")
+        .innerJoin("projects", "projects.id", "projects_skills.project_id")
+        .where(`${this.table}.id`, id_find_by_id);
+      return data
+    }catch(err){
+      throw err
     }
   }
 }

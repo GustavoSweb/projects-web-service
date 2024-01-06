@@ -4,5 +4,6 @@ class Skills {
   constructor(table) {
     this.search = new Find(table);
   }
+  
 }
 module.exports = new Skills("skills");

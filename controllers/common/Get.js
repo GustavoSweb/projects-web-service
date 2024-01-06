@@ -1,5 +1,4 @@
 
-
 class Get{
     constructor(model){
         this.model = model

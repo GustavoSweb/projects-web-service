@@ -8,5 +8,5 @@ class Projects {
         this.getProjects = this.get.All.bind(this.get);  // Faz com quer o metodo all estege instanciado no get
     }
 }
-
+ 
 module.exports = new Projects()
