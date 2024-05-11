@@ -13,18 +13,23 @@ class Find {
       throw err;
     }
   }
-  async InnerJoinProjectsSkills(id_find_by_id){
-    try{
+  async InnerJoinProjectsSkills(id_find_by_id) {
+    try {
       const data = await database
         .select([
-          "projects.*", "skills.name as skill_name", "skills.id as skill_id", "skills.level as skill_level", "skills.urlBackground as skill_urlBackground"
-      ]).table("users_materias")
+          "projects.*",
+          "skills.name as skill_name",
+          "skills.id as skill_id",
+          "skills.level as skill_level",
+          "skills.urlBackground as skill_urlBackground",
+        ])
+        .table("users_materias")
         .innerJoin("skills", "skills.id", "projects_skills.skill_id")
         .innerJoin("projects", "projects.id", "projects_skills.project_id")
         .where(`${this.table}.id`, id_find_by_id);
-      return data
-    }catch(err){
-      throw err
+      return data;
+    } catch (err) {
+      throw err;
     }
   }
 }
