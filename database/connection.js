@@ -10,5 +10,6 @@ const knex = require("knex")({
     password: HOST_PASSWORD,
     database: HOST_DATABASE,
   },
+  acquireConnectionTimeout: 30000,
 });
 module.exports = knex;
