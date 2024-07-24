@@ -23,7 +23,7 @@ class Find {
           "skills.level as skill_level",
           "skills.urlBackground as skill_urlBackground",
         ])
-        .table("users_materias")
+        .table("projects_skills")
         .innerJoin("skills", "skills.id", "projects_skills.skill_id")
         .innerJoin("projects", "projects.id", "projects_skills.project_id")
         .where(`${this.table}.id`, id_find_by_id);

@@ -1,7 +1,7 @@
-const express = require('express')
-const Router = express.Router()
-const Skills = require('../controllers/Skills')
+const express = require("express");
+const Router = express.Router();
+const Skills = require("../controllers/Skills");
 
-Router.get('/skills', Skills.getSkills)
-
-module.exports = Router
+Router.get("/skills", Skills.getSkills);
+Router.get("/skills/:id/projects", Skills.getProjects);
+module.exports = Router;

@@ -7,6 +7,25 @@ class Projects {
   constructor(table) {
     this.search = new Find(table);
   }
+  async findAll() {
+    try {
+      const data_projects = await database.select().table("projects").limit(4);
+      var projects = [];
+      for (const project of data_projects) {
+        let skills = await database
+          .select(["skills.*"])
+          .table("projects_skills")
+          .innerJoin("skills", "skills.id", "projects_skills.skill_id")
+          .where("projects_skills.project_id", project.id)
+          .limit(5);
+        project.skills = skills;
+        projects.push(project);
+      }
+      return projects;
+    } catch (err) {
+      throw err;
+    }
+  }
   async findById(id) {
     try {
       const data = await this.search.InnerJoinProjectsSkills(id);
