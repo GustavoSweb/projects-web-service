@@ -9,6 +9,7 @@ const knex = require("knex")({
     user: HOST_USER,
     password: HOST_PASSWORD,
     database: HOST_DATABASE,
+    ssl: { rejectUnauthorized: false },
   },
   acquireConnectionTimeout: 30000,
 });
