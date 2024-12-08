@@ -2,7 +2,7 @@ const { HOST_NAME, HOST_PORT, HOST_USER, HOST_PASSWORD, HOST_DATABASE } =
   process.env;
 
 const knex = require("knex")({
-  client: "mysql2",
+  client: "pg",
   connection: {
     host: HOST_NAME,
     port: HOST_PORT,

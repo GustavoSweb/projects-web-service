@@ -8,6 +8,7 @@ class Projects {
       const projects = await ProjectModel.findAll();
       res.json(projects);
     } catch (err) {
+      console.log(err);
       res.sendStatus(500);
     }
   }
